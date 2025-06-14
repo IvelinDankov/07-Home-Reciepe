@@ -1,0 +1,12 @@
+
+
+{{setTitle 'Recipe Catalog'}}
+
+<h2>Recipe Catalog</h2>
+<section class="recipes">
+  {{#each recipes}}{{>recipe}}{{else}}
+    <!-- Add more recipes here -->
+    <p class="no-post">There are no recipes found yet!</p>
+  {{/each}}
+  <!-- <p class="no-post">There are no recipes found yet!</p> -->
+</section>

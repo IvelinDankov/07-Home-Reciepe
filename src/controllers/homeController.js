@@ -1,10 +1,10 @@
 import { Router } from "express";
-import RecipeService from "../services/RecipeService.js";
+import recipeService from "../services/recipeService.js";
 
 const homeController = Router();
 
 homeController.get("/", async (req, res) => {
-  const recipe = await RecipeService.findLastThree();
+  const recipe = await recipeService.findLastThree();
 
   res.render("home", { recipe });
 });

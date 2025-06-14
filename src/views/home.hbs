@@ -1,28 +1,18 @@
 <section class="hero">
-  <h2>Welcome to Home Cooking Recipes</h2>
-  <p>Your go-to place for delicious and easy-to-make recipes.</p>
-  <a href="#" class="btn">Explore Recipes</a>
+    <h2>Welcome to Home Cooking Recipes</h2>
+    <p>Your go-to place for delicious and easy-to-make recipes.</p>
+    <a href="/recipes/catalog" class="btn">Explore Recipes</a>
 </section>
 <section class="featured-recipes">
-  <h2>Featured Recipes</h2>
-  <div class="recipes">
+    <h2>Featured Recipes</h2>
+    <div class="recipes">
 
-    {{#each recipe}}
-      <article class="recipe">
-        <img
-          src="https://static01.nyt.com/images/2021/02/14/dining/carbonara-horizontal/carbonara-horizontal-square640-v2.jpg"
-          alt="Spaghetti Carbonara"
-        />
-        <h3>Spaghetti Carbonara</h3>
-        <p>A classic Italian pasta dish made with eggs, cheese, pancetta, and
-          pepper.</p>
-        <a href="#">Read More</a>
-      </article>
-    {{else}}
-      <p class="no-post">There are no recipes found yet!</p>
+        {{#each recipe}}
+            {{>recipe}}
+        {{else}}
+            <p class="no-post">There are no recipes found yet!</p>
+        {{/each}}
 
-    {{/each}}
-
-    <!-- <p class="no-post">There are no recipes found yet!</p> -->
-  </div>
+        <!-- <p class="no-post">There are no recipes found yet!</p> -->
+    </div>
 </section>

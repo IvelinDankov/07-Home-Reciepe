@@ -3,19 +3,23 @@ import { Schema, Types, model } from "mongoose";
 const recipesSchema = new Schema({
   title: {
     type: String,
-    required: true,
+    required: [true, "Title is required"],
   },
   ingredients: {
     type: String,
-    required: true,
+    required: [true, "Ingredients is required"],
+  },
+  instructions: {
+    type: String,
+    required: [true, "Instructions is required"],
   },
   description: {
     type: String,
-    required: true,
+    required: [true, "Description is required"],
   },
   image: {
     type: String,
-    required: true,
+    required: [true, "Image is required"],
   },
   recommendList: [
     {
