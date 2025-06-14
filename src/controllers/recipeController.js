@@ -30,6 +30,24 @@ recipeController.get("/catalog", async (req, res) => {
 
   res.render("recipe/catalog", { recipes });
 });
+
+recipeController.get("/:recipeId/recommend", async (req, res) => {
+  const recepiId = req.params.recipeId;
+  const userId = req.user?.id;
+
+  const recipe = await recipeService.getOne(recepiId);
+
+  const hasRecommended = recipe.recommendList.includes(userId);
+
+  if (hasRecommended) {
+    throw new Error("You has already like it!");
+  }
+
+  await recipeService.recommend(recepiId, userId);
+
+  res.redirect(`/recipes/${recepiId}/details`);
+});
+
 recipeController.get("/:recipeId/details", async (req, res) => {
   const recepiId = req.params.recipeId;
   const userId = req.user?.id;
@@ -39,10 +57,17 @@ recipeController.get("/:recipeId/details", async (req, res) => {
   const isOwner = String(recipe.owner) === userId;
 
   const hasRecommended = recipe.recommendList.find(
-    (item) => item.id === userId
+    (id) => String(id) === userId
   );
 
-  res.render("recipe/details", { recipe, isOwner, hasRecommended });
+  const likedPeople = recipe.recommendList.length;
+
+  res.render("recipe/details", {
+    recipe,
+    isOwner,
+    hasRecommended,
+    likedPeople,
+  });
 });
 
 recipeController.get("/:recipeId/delete", async (req, res) => {
