@@ -11,14 +11,14 @@ userController.get("/register", authMiddleware.guard, (req, res) => {
 });
 
 userController.post("/register", authMiddleware.guard, async (req, res) => {
-  const { username, email, password, rePass } = req.body;
+  const { name, email, password, rePass } = req.body;
 
   try {
     if (password !== rePass) {
       throw new Error("Password mismach!");
     }
 
-    await userService.register(username, email, password, rePass);
+    await userService.register(name, email, password, rePass);
 
     // const token = await userService.login(email, password);
 
@@ -28,7 +28,7 @@ userController.post("/register", authMiddleware.guard, async (req, res) => {
   } catch (err) {
     const error = errorMsg(err);
 
-    res.render("user/register", { username, email, error });
+    res.render("user/register", { name, email, error });
   }
 });
 

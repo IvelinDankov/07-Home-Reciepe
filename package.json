@@ -10,7 +10,7 @@
   "keywords": [],
   "author": "VD",
   "license": "ISC",
-  "description": "",
+  "description": "This is my Exam Project for BackEnd SoftUni 06/2025",
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",

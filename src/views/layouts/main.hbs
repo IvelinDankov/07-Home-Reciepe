@@ -14,19 +14,24 @@
           <li><a href="/">Home</a></li>
           <li><a href="#">Recipes</a></li>
           <li><a href="#">Search</a></li>
-          <li><a href="#">Add Recipe</a></li>
-          <li><a href="/users/login">Login</a></li>
-          <li><a href="/users/register">Register</a></li>
-          <li><a href="/users/logout">Logout</a></li>
+
+          {{#if user.isAuthenticated}}
+            <li><a href="/recipes/create">Add Recipe</a></li>
+            <li><a href="/users/logout">Logout</a></li>
+
+          {{else}}
+            <li><a href="/users/login">Login</a></li>
+            <li><a href="/users/register">Register</a></li>
+          {{/if}}
         </ul>
       </nav>
     </header>
     <main>
-      <!-- In case of error, you should display div with class "error-container" -->
-      <!-- You can choose to display the first error or all of them (error message/s in your opinion) -->
-      <!-- <div class="error-container">
-            <p>Error</p>
-        </div> -->
+      {{#if error}}
+        <div class="error-container">
+          <p>{{error}}</p>
+        </div>
+      {{/if}}
       {{{body}}}
     </main>
     <footer>

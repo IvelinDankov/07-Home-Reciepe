@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import { jwtSecret } from "../utils/userUtils.js";
 
 export default {
-  async register(username, email, password) {
+  async register(name, email, password) {
     const user = await User.findOne({ email });
 
     if (user) {
@@ -12,7 +12,7 @@ export default {
     }
 
     return User.create({
-      username,
+      name,
       email,
       password,
     });
@@ -33,7 +33,7 @@ export default {
 
     const payload = {
       id: user.id,
-      username: user.username,
+      username: user.name,
       email: user.email,
     };
 
