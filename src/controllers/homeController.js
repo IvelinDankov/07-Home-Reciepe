@@ -1,20 +1,33 @@
 import { Router } from "express";
 import recipeService from "../services/recipeService.js";
+import errorMsg from "../utils/errorMsg.js";
 
 const homeController = Router();
 
 homeController.get("/", async (req, res) => {
-  const recipe = await recipeService.findLastThree();
 
-  res.render("home", { recipe });
+  try {
+    const recipe = await recipeService.findLastThree();
+  
+    res.render("home", { recipe });
+    
+  } catch (err) {
+    const error = errorMsg(err)
+    res.render('home', {error})
+  }
 });
 
 homeController.get("/search", async (req, res) => {
   const filter = req.query;
 
-  const recipes = await recipeService.getAllRecipe(filter);
+  try {
+    const recipes = await recipeService.getAllRecipe(filter);
 
-  res.render("search", { filter, recipes });
+    res.render("search", { filter, recipes });
+  } catch (err) {
+    const error = errorMsg(err)
+    res.render('search', {error})
+  }
 });
 
 export default homeController;
